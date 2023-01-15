@@ -11,3 +11,5 @@ const BoardCard = ({ id, board }) => {
 }
 
 export default BoardCard
+
+// const postCard = post.map((board, index) => <PostCard id={id} key={ index } imgUrl={ imgUrl } body={body}  />)
