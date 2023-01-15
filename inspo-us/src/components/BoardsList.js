@@ -27,7 +27,7 @@ const BoardsList = () => {
     return <h1>Loading...</h1>
   } else {
 
-    const boardCard = boards.map((board, index) => <BoardCard key={ index } board={ board } />)
+    const boardCard = boards.map((board, index) => <BoardCard id={id} key={ index } board={ board } />)
     // console.log(boards)
     return (
       <div>

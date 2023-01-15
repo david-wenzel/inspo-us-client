@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
-const BoardCard = ({ board }) => {
+const BoardCard = ({ id, board }) => {
 
   return (
     <li>
-      <NavLink to={`/users/${board.id}/boards/${board.id}`}>{ board.title }</NavLink>
+      <NavLink to={`/users/${id}/boards/${board.id}`}>{ board.title }</NavLink>
     </li>
   )
 }
