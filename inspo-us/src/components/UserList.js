@@ -8,7 +8,7 @@ export default function UserList() {
     
     useEffect(() => {
         const loadUsers = async () => {
-          const resp = await fetch(`localhost:9292/users`)
+          const resp = await fetch(`http://localhost:9292/users`)
           const data = await resp.json();
           setUsers(data);
           setLoading(false);
