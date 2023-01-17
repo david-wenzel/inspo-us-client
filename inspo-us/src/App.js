@@ -6,6 +6,7 @@ import UserList from './components/UserList';
 import About from './components/About';
 import BoardsList from './components/BoardsList';
 import BoardDetails from './components/BoardDetails';
+import LastUser from './components/LastUser';
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
       <Route exact path="/about" component={ About } />
       <Route exact path="/users/:id" component={ BoardsList } />
       <Route exact path="/users/:id/boards/:boardId" component={ BoardDetails } />
+      <Route exact path="/new_user" component={ LastUser } />
       </Switch>
       </Router>
     </div>
