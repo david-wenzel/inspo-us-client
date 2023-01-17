@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import UserCard from './UserCard'
+import NewUser from './NewUser';
 
 export default function UserList() {
 
     const [ users, setUsers ] = useState([]);
     const [ loading, setLoading ] = useState(true);
+
+
     
     useEffect(() => {
         const loadUsers = async () => {
@@ -16,6 +19,8 @@ export default function UserList() {
         loadUsers();
       }, [])
 
+      
+
       if(loading){ return <h1>Loading...</h1>}
   
   
@@ -23,6 +28,7 @@ export default function UserList() {
     return (
     <div>
       <h1>Contributers</h1>
+      <NewUser />
       {userCard}
     </div>
   )

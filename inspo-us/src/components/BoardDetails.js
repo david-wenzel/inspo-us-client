@@ -7,12 +7,12 @@ export default function BoardDetails() {
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { id, board_id } = useParams();
+    const { id, boardId } = useParams();
     const [post, setPost] = useState();
 
     useEffect(() => {
         const loadPosts = async () => {
-          const resp = await fetch(`http://localhost:9292/users/${id}/boards/${board_id}`)
+          const resp = await fetch(`http://localhost:9292/users/${id}/boards/${boardId}`)
           const data = await resp.json();
           
           setPosts(data);
@@ -20,17 +20,19 @@ export default function BoardDetails() {
           setPost(data.posts)
         }
         loadPosts();
-    }, [board_id])
+    }, [boardId, id])
     
-    console.log(post)
+  
       if(loading) {
         return <h1>Loading...</h1>
       } else {
         
+        
+    const sortedPosts = post.sort((a, b) => (a.created_at > b.created_at) ? -1 : 1);
   return (
     <div>
       <h1>{posts.title}</h1>
-      { post.map(post => <PostCard key={post.id} post={post} />)}
+      { sortedPosts.map(post => <PostCard key={post.id} post={post} />)}
     </div>
   )
 }
