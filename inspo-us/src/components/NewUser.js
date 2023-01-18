@@ -37,7 +37,7 @@ const NewUser = () => {
           <input type="text" id="name" value={ name } onChange={ handleChange } autoFocus={ true } />
         </div>
         <br />
-        <input type="submit" value="Create User" />
+        <input type="submit" value="Create Contributer" />
       </form>
     </div>
   )

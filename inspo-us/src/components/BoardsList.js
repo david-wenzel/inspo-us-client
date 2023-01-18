@@ -27,7 +27,17 @@ const BoardsList = () => {
     return <h1>Loading...</h1>
   } else {
 
-    const boardCard = boards.map((board, index) => <BoardCard id={id} key={ index } board={ board } />)
+    const deleteBoard = async id => {
+        await fetch(`http://localhost:9292/boards/${ id }`, { method: "DELETE" })
+        removeBoard( id );
+      }
+      
+      const removeBoard = id => {
+        setBoards(boards.filter( board => board.id !== id))
+      }
+    
+
+    const boardCard = boards.map((board, index) => <BoardCard id={id} key={ index } board={ board } deleteBoard={deleteBoard}/>)
     // console.log(boards)
     return (
       <div>
