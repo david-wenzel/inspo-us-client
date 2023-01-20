@@ -11,6 +11,7 @@ export default function PostCard({post, deletePost}) {
       <p>{post.body}</p>
       <button onClick={ () => deletePost(post.id) }>Delete</button>
       <NavLink to={`/editpost/${post.id}`}>Edit Post</NavLink>
+      {/* <NavLink to={} */}
     </div>
   )
 }

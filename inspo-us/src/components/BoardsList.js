@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import BoardCard from './BoardCard';
+import BoardPosts from './BoardPosts';
+// import BoardDetails from './BoardDetails';
 
 
 
@@ -19,7 +21,7 @@ const BoardsList = () => {
       setUser(data);
       setBoards(data.boards)
       setLoading(false);
-    }
+        }
     loadUser();
   }, [id])
 
@@ -37,12 +39,14 @@ const BoardsList = () => {
       }
     
 
-    const boardCard = boards.map((board, index) => <BoardCard id={id} key={ index } board={ board } deleteBoard={deleteBoard}/>)
+    const boardCard = boards.map((board) => <BoardCard id={id} key={ board.id } board={ board } deleteBoard={deleteBoard}/>)
+    // const boardPost = boards.map((board) => <BoardPosts posts={board.posts}  /> )
     // console.log(boards)
     return (
       <div>
         <h1>{ user.name }'s boards</h1>
         { boardCard }
+        {/* { boardPost } */}
       </div>
     )
   }

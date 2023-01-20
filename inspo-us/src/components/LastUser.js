@@ -28,7 +28,6 @@ const LastUser = () => {
   } else {
 
     const boardCard = boards.map((board, index) => <BoardCard id={id} key={ index } board={ board } />)
-    // console.log(boards)
     return (
       <div>
         <h1>{ user.name }'s boards</h1>

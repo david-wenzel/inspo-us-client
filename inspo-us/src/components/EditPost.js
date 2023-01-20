@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 const EditPost = () => {
-    const [post, setPost] = useState();
-    // const [imgUrl, setImgUrl] = useState();
-    // const [body, setBody] = useState();
+  const [post, setPost] = useState();
   const [ loading, setLoading ] = useState(true);
   const { id } = useParams();
   const [state, setState] = useState({
@@ -13,22 +11,18 @@ const EditPost = () => {
   })
   const history = useHistory();
 
-//   const history = useHistory();
 
   useEffect(() => {
     const loadPost = async () => {
       const resp = await fetch(`http://localhost:9292/posts/${id}`)
       const data = await resp.json();
       setPost(data);
-    //   setName(data.name);
       setLoading(false);
     }
     loadPost();
   }, [id])
 
-//   const handleChange = e => {
-//     setName(e.target.value)
-//   }
+
 const handleChange = e => {
     setState({
         ...state,
@@ -42,7 +36,7 @@ const handleChange = e => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    // const body = { name: name }
+
     const options = {
       method: "PATCH",
       headers,
@@ -50,15 +44,15 @@ const handleChange = e => {
     }
     await fetch(`http://localhost:9292/posts/${id}`, options)
     
-    history.push('/users');
+    history.goBack();
     
-    // redirect
+
   }
   if(loading){ return <h1>Loading...</h1>};
 
   return (
     <div>
-      <h1>Edit { post.id }</h1>
+      <h1>Edit Post { post.id }</h1>
       <form onSubmit={ handleSubmit }>
         <div>
           <label htmlFor="name">New Img Url:</label>
@@ -68,7 +62,7 @@ const handleChange = e => {
           <input type="text" name='body' id="body" value={ state.body } onChange={ handleChange }  />
         </div>
         <br />
-        <input type="submit" value="Create Post" />
+        <input type="submit" value="Edit Post" />
       </form>
     </div>
   )
