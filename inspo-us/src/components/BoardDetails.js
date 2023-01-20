@@ -36,7 +36,7 @@ export default function BoardDetails() {
             [e.target.name]: e.target.value
           })
       }
-
+console.log(post)
       const handleSubmit =  async e => {
         e.preventDefault();
         const headers = {
@@ -53,7 +53,10 @@ export default function BoardDetails() {
             ...state,
             [e.target.name]: ""
           })
-          loadPosts()
+        //   loadPosts()
+        console.log(state)
+//load or set
+        setPost([...post, state])
     };
    
     const deletePost = async id => {
@@ -71,12 +74,15 @@ export default function BoardDetails() {
       } else {
         
         
-    const sortedPosts = post.sort((a, b) => (a.created_at > b.created_at) ? -1 : 1);
+    // const sortedPosts = post.sort((a, b) => (a.created_at > b.created_at) ? -1 : 1);
   return (
     <div>
       <h1>{posts.title}</h1>
       < NewPost handleChange={handleChange} handleSubmit={handleSubmit} state={state}/>
-      { sortedPosts.map(post => <PostCard key={post.id} post={post} deletePost={deletePost} />)}
+      {/* { sortedPosts.map(post => <PostCard key={post.id} post={post} deletePost={deletePost} />)} */}
+    {post.map(post => <PostCard key={post.id} post={post} deletePost={deletePost} />)}
+
+      {/* <PostCard key={post.id} post={post} deletePost={deletePost} /> */}
     </div>
   )
 }
