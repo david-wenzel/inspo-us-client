@@ -17,6 +17,19 @@ export default function BoardDetails() {
       })
   
 
+    const loadPosts = async () => {
+        const resp = await fetch(`http://localhost:9292/users/${id}/boards/${boardId}`)
+        const data = await resp.json();
+        
+        setPosts(data);
+        setLoading(false);
+        setPost(data.posts)
+      }
+    
+    useEffect(() => {
+        loadPosts();
+    }, [])
+
     const handleChange = e => {
         setState({
             ...state,
@@ -24,36 +37,34 @@ export default function BoardDetails() {
           })
       }
 
-      const handleSubmit = async e => {
+      const handleSubmit =  async e => {
         e.preventDefault();
         const headers = {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
-        // const body = { img_url: imgUrl,
-        // body: postBody }
         const options = {
           method: "POST",
           headers,
           body: JSON.stringify(state)
         }
         await fetch(`http://localhost:9292/users/${id}/boards/${boardId}/posts`, options)
-        
-    }
+        setState({
+            ...state,
+            [e.target.name]: ""
+          })
+          loadPosts()
+    };
+   
+    const deletePost = async id => {
+        await fetch(`http://localhost:9292/posts/${id}`, { method: "DELETE" })
+        removePost( id );
+      }
     
+      const removePost = id => {
+        setPost(post.filter( post => post.id !== id))
+      }
 
-    useEffect(() => {
-        const loadPosts = async () => {
-          const resp = await fetch(`http://localhost:9292/users/${id}/boards/${boardId}`)
-          const data = await resp.json();
-          
-          setPosts(data);
-          setLoading(false);
-          setPost(data.posts)
-        }
-        loadPosts();
-    }, [boardId, id, handleSubmit])
-    
   
       if(loading) {
         return <h1>Loading...</h1>
@@ -65,7 +76,7 @@ export default function BoardDetails() {
     <div>
       <h1>{posts.title}</h1>
       < NewPost handleChange={handleChange} handleSubmit={handleSubmit} state={state}/>
-      { sortedPosts.map(post => <PostCard key={post.id} post={post} />)}
+      { sortedPosts.map(post => <PostCard key={post.id} post={post} deletePost={deletePost} />)}
     </div>
   )
 }
