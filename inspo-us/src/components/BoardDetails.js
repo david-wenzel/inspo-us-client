@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PostCard from './PostCard';
+import NewPost from './NewPost';
+
 
 
 export default function BoardDetails() {
@@ -9,6 +11,9 @@ export default function BoardDetails() {
     const [loading, setLoading] = useState(true);
     const { id, boardId } = useParams();
     const [post, setPost] = useState();
+
+  
+    
 
     useEffect(() => {
         const loadPosts = async () => {
@@ -32,6 +37,7 @@ export default function BoardDetails() {
   return (
     <div>
       <h1>{posts.title}</h1>
+      < NewPost id={id} boardId={boardId} />
       { sortedPosts.map(post => <PostCard key={post.id} post={post} />)}
     </div>
   )
