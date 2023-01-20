@@ -7,6 +7,7 @@ import About from './components/About';
 import BoardsList from './components/BoardsList';
 import BoardDetails from './components/BoardDetails';
 import LastUser from './components/LastUser';
+import EditPost from './components/EditPost';
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
       <Route exact path="/users/:id" component={ BoardsList } />
       <Route exact path="/users/:id/boards/:boardId" component={ BoardDetails } />
       <Route exact path="/new_user" component={ LastUser } />
+      <Route exact path="/editpost/:id" component={EditPost}/>
       </Switch>
       </Router>
     </div>

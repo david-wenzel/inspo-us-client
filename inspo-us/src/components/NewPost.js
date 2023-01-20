@@ -1,7 +1,3 @@
-
-
-
-
 const NewPost = ( { handleChange, handleSubmit, state }) => {
 
 
