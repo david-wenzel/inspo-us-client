@@ -38,7 +38,7 @@ export default function BoardDetails() {
           body: JSON.stringify(state)
         }
         await fetch(`http://localhost:9292/users/${id}/boards/${boardId}/posts`, options)
-    
+        
     }
     
 
